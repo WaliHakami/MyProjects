@@ -1,8 +1,120 @@
-<html>
-  <body>
-   try 
-    <h1>
-      F
-    </h1>
-  </body>
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+<title>حساب نقاط المفاضلة للخدمة المدنية</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" /> 
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="CSS/CSS.CSS">
+<script language="JavaScript" src=""></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<p id="ddd"></p>
+<script> 
+function myF() {
+var x = document.getElementById("dep");
+var typ = x.selectedIndex;
+var u = document.getElementById("Te");
+
+
+if(typ == 0){
+
+       u.disabled = false;
+
+}
+
+else {
+       u.value = 0;
+           u.disabled = true;
+}
+} 
+
+
+function Onc(){
+        var gt;
+    var a = document.getElementById("GPA").value;
+    var b = document.getElementById("Te").value;
+    var c = document.getElementById("De").value;
+        var see = document.getElementById("se").value;
+        document.getElementById("Re").innerHTML = see;
+        if(see == "one"){
+            gt = 5;
+        }
+        else 
+           gt = 4; 
+    
+    var bre = 0.4;
+    var g = new Date();
+    var d = new Date(c);
+    var dr = [];
+        dr[0] = g.getFullYear();
+        dr[1] = g.getMonth() +1;
+        dr[2] = g.getDate();
+        
+        dr[3] = d.getFullYear();
+        dr[4] = d.getMonth() +1;
+        dr[5] = d.getDate();
+        
+    var wit = document.getElementById("Te");
+    if(wit.disabled == true){
+               bre = 0.8;
+    }
+        else
+            {
+               bre = 0.4;
+            }
+    
+        var dayss = ((dr[0] * 360) + (dr[1] * 30) + dr[2]) - ((dr[3] * 360) + (dr[4] * 30) + dr[5]);
+        if (dayss >= 3600){
+            dayss = 3600;
+        }
+    if(a <= gt && a > 0 && b >= 0 && b <= 100 && dayss > 0)
+        {
+    document.getElementById("Re").innerHTML =(((a*100/gt)*bre) + (b*0.4) + (dayss/360) *2).toFixed(0) ;
+ 
+        }
+        else
+            document.getElementById("Re").innerHTML = "خطأ في المدخلات";
+       }
+</script>
+    <div class="container">
+    <table class="pure-table pure-table-bordered" style="width: 100%">
+        <thead> <tr style="text-align: center;"><th>المعدل التراكمي</th><th>نتيجة الأختبار</th><th>تاريخ التخرج</th></tr></thead>
+    
+    <tr><td><input class="form-control" type="number" value="0.0" id="GPA">
+        
+   <select id="se">
+  <option value="one">5</option>
+  <option value="two">4</option>
+
+</select>
+        </td><td><input class="form-control" type="number" value="0.0" id="Te">
+<select id="dep" onchange="myF()">
+<option value="1">مع</option>
+<option value="2">بدون</option>
+
+</select>
+        </td><td><input class="form-control" type="date" id="De" placeholder="٠٦/٠٩/٢٠١٨"></td></tr>
+    <tr><td colspan="3"><p id="Re" style="text-align: center"></p></td></tr>
+    <tr><td colspan="3"><button style="float: right" class="pure-button" type="button" onclick="Onc()">النتيجة</button></td></tr>
+
+    </table>
+    <a href="jadara.html" target="_blank"  style=" float: right">أضغط هنا لرؤية نتائج الترشيح الأخير في صفحة مستقلة</a>
+    <iframe src="jadara.html" width="100%" height="800px"></iframe>
+    </div>
+
+
+</body>
 </html>
