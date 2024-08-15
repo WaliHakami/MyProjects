@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>إدارة المهام</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        
+        <!-- Popper.js -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <style>
+            body {
+                direction: rtl;
+                text-align: right;
+                background-color: #f8f9fa;
+            }
+            .container {
+                margin-top: 50px;
+            }
+            .btn {
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">إدارة الموظفين</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">الموظفين</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="tasks.html">المهام</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="notifications.html">الإشعارات</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">تسجيل الدخول</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1 class="text-center mb-4">إدارة المهام</h1>
+        <div class="card p-4">
+            <div class="form-group">
+                <label for="employeeSelect">اختر الموظف</label>
+                <select id="employeeSelect" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label for="taskDescription">وصف المهمة</label>
+                <input type="text" id="taskDescription" class="form-control" placeholder="أدخل وصف المهمة">
+            </div>
+            <div class="form-group">
+                <label for="dueDate">تاريخ الاستحقاق</label>
+                <input type="date" id="dueDate" class="form-control">
+            </div>
+            <button class="btn btn-primary btn-block" onclick="addTask()">إضافة مهمة</button>
+        </div>
+        <h2 class="mt-5">قائمة المهام</h2>
+        <ul id="taskList" class="list-group"></ul>
+        <a href="index.html" class="btn btn-link mt-4">إدارة الموظفين</a>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>إدارة المهام</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                direction: rtl;
+                text-align: right;
+                background-color: #f8f9fa;
+            }
+            .container {
+                margin-top: 50px;
+            }
+            .btn {
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <h1 class="text-center mb-4">مهام الموظف</h1>
+        <div class="form-group">
+            <label for="employeeSelect">اختر الموظف</label>
+            <select id="employeeSelect" class="form-control" onchange="loadEmployeeTasks()"></select>
+        </div>
+        <h2 class="mt-4">المهام</h2>
+        <ul id="employeeTaskList" class="list-group"></ul>
+        <a href="index.html" class="btn btn-link mt-4">الرجوع إلى إدارة الموظفين</a>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            direction: rtl;
+            text-align: right;
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">تسجيل الدخول</h1>
+        <div class="card p-4">
+            <div class="form-group">
+                <label for="employeeName">اسم الموظف</label>
+                <input type="text" id="employeeName" class="form-control" placeholder="أدخل اسمك">
+            </div>
+            <button class="btn btn-primary btn-block" onclick="login()">تسجيل الدخول</button>
+        </div>
+    </div>
+    <script>
+        function login() {
+            const employeeName = document.getElementById('employeeName').value;
+            const employees = JSON.parse(localStorage.getItem('employees')) || [];
+            const employee = employees.find(emp => emp.name === employeeName);
+
+            if (employee) {
+                localStorage.setItem('loggedInEmployee', employeeName);
+                window.location.href = 'employee_tasks.html';
+            } else {
+                alert('اسم الموظف غير موجود');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهام الموظف</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            direction: rtl;
+            text-align: right;
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">مهام الموظف</h1>
+        <h3 id="employeeGreeting" class="text-center mb-4"></h3>
+
+        <h2 class="mt-4">المهام</h2>
+        <ul id="employeeTaskList" class="list-group mb-4"></ul>
+
+        <h2 class="mt-4">الإشعارات</h2>
+        <ul id="employeeNotificationList" class="list-group mb-4"></ul>
+
+        <a href="index.html" class="btn btn-link mt-4">تسجيل الخروج</a>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loggedInEmployee = localStorage.getItem('loggedInEmployee');
+            if (!loggedInEmployee) {
+                window.location.href = 'login.html';
+            } else {
+                document.getElementById('employeeGreeting').textContent = `مرحبًا، ${loggedInEmployee}`;
+                loadEmployeeTasks(loggedInEmployee);
+                loadEmployeeNotifications(loggedInEmployee);
+            }
+        });
+
+        function loadEmployeeTasks(employeeName) {
+            const employeeTaskList = document.getElementById('employeeTaskList');
+            employeeTaskList.innerHTML = '';
+
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const employeeTasks = tasks.filter(task => task.employeeName === employeeName);
+
+            employeeTasks.forEach(task => {
+                const taskItem = document.createElement('li');
+                taskItem.textContent = `${task.taskDescription} (تاريخ الاستحقاق: ${task.dueDate})`;
+                taskItem.classList.add('list-group-item');
+                employeeTaskList.appendChild(taskItem);
+            });
+        }
+
+        function loadEmployeeNotifications(employeeName) {
+            const employeeNotificationList = document.getElementById('employeeNotificationList');
+            employeeNotificationList.innerHTML = '';
+
+            const notifications = JSON.parse(localStorage.getItem('notifications')) || {};
+            const employeeNotifications = notifications[employeeName] || [];
+
+            employeeNotifications.forEach(notification => {
+                const notificationItem = document.createElement('li');
+                notificationItem.textContent = `${notification.message} (توقيت: ${notification.timestamp})`;
+                notificationItem.classList.add('list-group-item');
+                employeeNotificationList.appendChild(notificationItem);
+            });
+        }
+    </script>
+</body>
+</html>
